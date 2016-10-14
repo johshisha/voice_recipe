@@ -1,5 +1,5 @@
 import bottle
-from bottle import run, route, template
+from bottle import run, route, template, static_file, url
 
 @route('/static/<filepath:path>', name='static_file')
 def static(filepath):
@@ -16,7 +16,7 @@ def test():
 
 @route('/')
 def main():
-    return template('steps')
+    return template('steps', url=url)
 
 run(debug=True)
 
