@@ -44,6 +44,7 @@
     </div>
     <button class="btn" id="back">前！！</button>
     <button class="btn" id="next">次！！</button>
+    <p>{{recipe_url}}</p>
   </body>
 
   <!-- load js -->
