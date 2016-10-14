@@ -1,0 +1,55 @@
+body {
+	background: #fffff1;
+}
+
+p {
+	margin: 0px;
+}
+
+
+div.body {
+	border: 1px;
+	background: #ffff91;
+}
+
+
+/* main */
+div.main-div {
+	background: #fff111;
+}
+
+div.main-content {
+	height: 100%;
+	width: 20%;
+	margin: auto;
+	text-align: center;
+}
+
+img.step-img {
+	width: 100%;
+}
+
+p.step-text {
+	width: 100%;
+}
+
+
+/* sub */
+div.sub-div {
+	text-align: center;
+	background: #ff9999;
+	height: 20%;
+}
+
+div.sub-div img {
+	display: none;
+}
+
+/* step */
+div.steps {
+	display: inline-block;
+	background: #999999;
+	padding: 5px;
+	margin: 3px;
+}
+
