@@ -2,3 +2,4 @@
 template
 react_sample
 static/images
+*.ipynb
