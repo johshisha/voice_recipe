@@ -20,7 +20,7 @@ def test():
 
 @app.get('/')
 def index():
-    return template('index', url=url)
+    return template('index', url=app.get_url)
 
 @app.post('/making')
 def steps():
@@ -29,12 +29,20 @@ def steps():
     recipe = Recipe(recipe_url=recipe_url)
     steps = recipe.steps
 
-    return template('steps', url=url, recipe_url=recipe_url, steps=steps)
+    return template('steps', url=app.get_url, recipe_url=recipe_url, steps=steps)
 
-
+class StripPathMiddleware(object):
+    '''
+    Get that slash out of the request
+    '''
+    def __init__(self, a):
+        self.a = a
+    def __call__(self, e, h):
+        e['PATH_INFO'] = e['PATH_INFO'].rstrip('/')
+        return self.a(e, h)
 
 if __name__ == '__main__':
-    run(app)
+    run(app=StripPathMiddleware(app))
 
 
 
