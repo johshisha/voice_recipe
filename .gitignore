@@ -4,3 +4,4 @@ template
 react_sample
 static/images
 *.ipynb
+__pycache__/*
