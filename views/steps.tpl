@@ -6,7 +6,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 
     <!-- adding  css files -->
-    <link type="text/css" href="{{url('static_file', filepath='steps.css')}}" rel="stylesheet">
+    <link type="text/css" href=".{{url('static_file', filepath='steps.css')}}" rel="stylesheet">
 
   </head>
   <body>
@@ -41,5 +41,5 @@
   </body>
 
   <!-- load js -->
-  <script src="{{url('static_file', filepath='steps.js')}}"></script>
+  <script src=".{{url('static_file', filepath='steps.js')}}"></script>
 </html>

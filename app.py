@@ -3,9 +3,10 @@ from bottle import Bottle, run, route, get, post, template, static_file, url, re
 
 from recipe import Recipe
 
+
 app = Bottle()
 
-@app.route('/static/<filepath:path>', name='static_file')
+@app.route('/static/<filepath:path>', name='static_file')#this path is hard coding!! so must change code
 def static(filepath):
     return static_file(filepath, root="./static")
 
@@ -23,7 +24,7 @@ def index():
     return template('index', url=app.get_url)
 
 @app.post('/making')
-def steps():
+def making():
     recipe_url = request.forms.get('recipe_url')
 
     recipe = Recipe(recipe_url=recipe_url)
@@ -31,19 +32,7 @@ def steps():
 
     return template('steps', url=app.get_url, recipe_url=recipe_url, steps=steps)
 
-class StripPathMiddleware(object):
-    '''
-    Get that slash out of the request
-    '''
-    def __init__(self, a):
-        self.a = a
-    def __call__(self, e, h):
-        e['PATH_INFO'] = e['PATH_INFO'].rstrip('/')
-        return self.a(e, h)
-
 if __name__ == '__main__':
-    run(app=StripPathMiddleware(app))
-
-
+    run(app=app)
 
 
