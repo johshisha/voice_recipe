@@ -1,4 +1,5 @@
 .DS_Store
+.python-version
 template
 react_sample
 static/images
