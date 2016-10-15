@@ -45,6 +45,10 @@ div.sub-div img {
 	display: none;
 }
 
+div.sub-div div {
+	width: 20%;
+}
+
 /* step */
 div.steps {
 	display: inline-block;

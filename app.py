@@ -24,7 +24,7 @@ def index():
 def steps():
     recipe_url = request.forms.get('recipe_url')
 
-    recipe = Recipe(url=recipe_url)
+    recipe = Recipe(recipe_url=recipe_url)
     steps = recipe.steps
 
     return template('steps', url=url, recipe_url=recipe_url, steps=steps)
