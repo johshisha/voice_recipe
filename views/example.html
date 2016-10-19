@@ -1,69 +1,57 @@
+<!DOCTYPE html>
 <html>
 <head>
-<meta charset="utf-8">
+    <meta charset="UTF-8">
+    <title>Web Speech API</title>
+    <script>
+        var flag_speech = 0;
+ 
+        function vr_function() {
+            window.SpeechRecognition = window.SpeechRecognition || webkitSpeechRecognition;
+            var recognition = new webkitSpeechRecognition();
+            recognition.lang = 'ja';
+            // recognition.interimResults = true;
+            // recognition.continuous = true;
+ 
+            recognition.onsoundstart = function() {
+                document.getElementById('status').innerHTML = "認識中";
+            };
+            recognition.onnomatch = function() {
+                document.getElementById('status').innerHTML = "もう一度試してください";
+            };
+            recognition.onerror = function() {
+                document.getElementById('status').innerHTML = "エラー";
+                if(flag_speech == 0)
+                  vr_function();
+            };
+            recognition.onsoundend = function() {
+                document.getElementById('status').innerHTML = "停止中";
+                  vr_function();
+            };
+ 
+            recognition.onresult = function(event){
+                var results = event.results;
+                for (var i = event.resultIndex; i<results.length; i++){
+                    console.log(results[i][0].transcript + '\n');
+                    if (results[i][0].transcript.match(/次/)){
+                        alert('inputed next');
+                    }
+                    document.getElementById('result_text').innerHTML = results[i][0].transcript;
+                }
+            };
+            flag_speech = 0;
+            document.getElementById('status').innerHTML = "start";
+            recognition.start();
+        }
+    </script> 
 </head>
 <body>
-<h1>Speech Recognition2</h1>
-<div id="area2"><span class="final" id="final_span"></span> <span class="interim" id="interim_span"></span></div>
-<input id="btn2" type="button" value="音声認識を継続的に行う"/>
-<select id="select2">
-    <option value="ja-JP">日本語</option>
-    <option value="en-US">English</option>
-</select>
-
-<script>
-var recognition;
-var nowRecognition = false;
-var $finalSpan = document.querySelector('#final_span');
-var $interimSpan = document.querySelector('#interim_span');
-
-function start () {
-    recognition = new webkitSpeechRecognition();
-    recognition.lang = document.querySelector('#select2').value;
-    recognition.continuous = true;
-    recognition.interimResults = true;
-    recognition.onresult = function (e) {
-        var finalText = '';
-        var interimText = '';
-        for (var i = 0; i < e.results.length; i++) {
-            if (e.results[i].isFinal) {
-                finalText += e.results[i][0].transcript;
-            } else {
-                interimText += e.results[i][0].transcript;
-            }
-        }
-        $interimSpan.textContent = interimText;
-        $finalSpan.textContent = finalText;
-    };
-    recognition.start();
-    nowRecognition = true;
-};
-
-function stop () {
-    recognition.stop();
-    nowRecognition = false;
-}
-
-document.querySelector('#btn2').onclick = function () {
-    
-    // unsupported.
-    if (!'webkitSpeechRecognition' in window) {
-        alert('Web Speech API には未対応です.');
-        return;
-    }
-    
-    if (nowRecognition) {
-        stop();
-        this.value = '音声認識を継続的に行う';
-        this.className = '';
-    } else {
-        start();
-        this.value = '音声認識を止める';
-        this.className = 'select';
-    }
-}
-
-
-</script>
+<textarea id="result_text" cols="100" rows="10">
+</textarea>
+<br>
+<textarea id="status" cols="100" rows="1">
+</textarea>
+<br>
+<input type="button" onClick="vr_function();" value="音認開始">
 </body>
 </html>

@@ -6,7 +6,7 @@
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
 
     <!-- adding  css files -->
-    <link type="text/css" href=".{{url('static_file', filepath='steps.css')}}" rel="stylesheet">
+    <link type="text/css" href="{{url('static_file', filepath='steps.css')}}" rel="stylesheet">
 
   </head>
   <body>
@@ -35,11 +35,18 @@
         %end
       </div>
     </div>
-    <button class="btn" id="back">前！！</button>
-    <button class="btn" id="next">次！！</button>
+<!--     <button class="btn" id="back">前！！</button>
+    <button class="btn" id="next">次！！</button> -->
+    <button onclick="vr_stop();"><a  id="stop_btn">認識終了</a></button> 
     <p>{{recipe_url}}</p>
   </body>
 
   <!-- load js -->
-  <script src=".{{url('static_file', filepath='steps.js')}}"></script>
+  <script src="{{url('static_file', filepath='steps.js')}}"></script>
+
+  <script>
+    // start recognition
+    console.log('start recognition');
+    vr_function();
+  </script>
 </html>
