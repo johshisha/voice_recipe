@@ -33,6 +33,6 @@ def making():
     return template('steps', url=app.get_url, recipe_url=recipe_url, steps=steps)
 
 if __name__ == '__main__':
-    run(app=app)
+    run(app=app, debug=True)
 
 
