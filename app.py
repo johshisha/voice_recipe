@@ -24,6 +24,7 @@ def index():
     return template('index', url=app.get_url)
 
 @app.post('/making')
+@app.post('/')
 def making():
     recipe_url = request.forms.get('recipe_url')
 
