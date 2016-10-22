@@ -12,7 +12,7 @@
   <body>
     <h1>CookpadのレシピURLを入力！</h1>
 
-    <form method="POST" action="/"> <!-- 要変更：決め打ちしている -->
+    <form method="POST" action="/making"> 
       <p>URL: <input type="text" name="recipe_url"></p>
       <input type="submit" value="このレシピで作る！">
     </form>

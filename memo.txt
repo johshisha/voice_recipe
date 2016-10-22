@@ -1,0 +1,39 @@
+in remote server, we must change path
+because we can not write correct setting
+
+
+diff --git a/views/index.tpl b/views/index.tpl
+index fa92b58..6687fb6 100644
+--- a/views/index.tpl
++++ b/views/index.tpl
+@@ -12,7 +12,7 @@
+   <body>
+     <h1>CookpadのレシピURLを入力！</h1>
+ 
+-    <form method="POST" action="/"> <!-- 要変更：決め打ちしている -->
++    <form method="POST" action="/recipe"> <!-- 要変更：決め打ちしている -->
+       <p>URL: <input type="text" name="recipe_url"></p>
+       <input type="submit" value="このレシピで作る！">
+     </form>
+diff --git a/views/steps.tpl b/views/steps.tpl
+index c9672f3..d0bd9ee 100644
+--- a/views/steps.tpl
++++ b/views/steps.tpl
+@@ -6,7 +6,7 @@
+     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.0/jquery.min.js"></script>
+ 
+     <!-- adding  css files -->
+-    <link type="text/css" href="{{url('static_file', filepath='steps.css')}}" rel="stylesheet">
++    <link type="text/css" href="./recipe{{url('static_file', filepath='steps.css')}}" rel="stylesheet">
+ 
+   </head>
+   <body>
+@@ -42,7 +42,7 @@
+   </body>
+ 
+   <!-- load js -->
+-  <script src="{{url('static_file', filepath='steps.js')}}"></script>
++  <script src="./recipe{{url('static_file', filepath='steps.js')}}"></script>
+ 
+   <script>
+     // start recognition
