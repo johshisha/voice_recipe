@@ -1,10 +1,11 @@
 import bottle
-from bottle import Bottle, run, route, get, post, template, static_file, url, request
+from bottle import Bottle, run, route, get, post, template, static_file, url, request, debug
 
 from recipe import Recipe
 
 
 app = Bottle()
+debug(False)
 
 @app.route('/static/<filepath:path>', name='static_file')#this path is hard coding!! so must change code
 def static(filepath):
