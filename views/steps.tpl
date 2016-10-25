@@ -38,7 +38,11 @@
 <!--     <button class="btn" id="back">前！！</button>
     <button class="btn" id="next">次！！</button> -->
     <button onclick="vr_stop();"><a  id="stop_btn">認識終了</a></button> 
-    <p>{{recipe_url}}</p>
+    <p>reipe url:  {{recipe_url}}</p>
+    <p>---ingredients list---</p>
+    %for ingredient in ingredients:
+      <ul>{{ ingredient }}</ul>
+    %end
   </body>
 
   <!-- load js -->

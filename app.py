@@ -31,8 +31,10 @@ def making():
 
     recipe = Recipe(recipe_url=recipe_url)
     steps = recipe.steps
+    ingredients = recipe.ingredients
 
-    return template('steps', url=app.get_url, recipe_url=recipe_url, steps=steps)
+    return template('steps', url=app.get_url, recipe_url=recipe_url, 
+    	steps=steps, ingredients=ingredients)
 
 if __name__ == '__main__':
     run(app=app, debug=True)
